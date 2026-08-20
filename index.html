@@ -298,9 +298,12 @@ nav.links a:hover{opacity:1; color:var(--oro-chiaro);}
 .detail-card.has-soste .d-soste{display:block;}
 .detail-card .d-soste .k{font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:rgba(245,238,224,.48); margin-bottom:9px;}
 .detail-card .d-soste ul{list-style:none;}
-.detail-card .d-soste li{display:flex; align-items:baseline; justify-content:space-between; gap:10px; padding:7px 0; border-bottom:1px dashed rgba(245,238,224,.14);}
+.detail-card .d-soste li{border-bottom:1px dashed rgba(245,238,224,.14);}
 .detail-card .d-soste li:last-child{border-bottom:none;}
-.detail-card .d-soste .r-name{font-size:12.5px; font-weight:500; color:var(--avorio); display:block;}
+.detail-card .d-soste .r-link{display:flex; align-items:baseline; justify-content:space-between; gap:10px; padding:7px 0; transition:opacity .2s ease;}
+.detail-card .d-soste .r-link:hover{opacity:.72;}
+.detail-card .d-soste .r-link:hover .r-name{color:var(--oro-chiaro);}
+.detail-card .d-soste .r-name{font-size:12.5px; font-weight:500; color:var(--avorio); display:block; transition:color .2s ease;}
 .detail-card .d-soste .r-loc{font-size:10.5px; color:rgba(245,238,224,.5);}
 .detail-card .d-soste .r-km{font-size:10.5px; color:var(--oro-chiaro); white-space:nowrap; flex-shrink:0;}
 .detail-card .d-soste-note{font-size:10px; color:rgba(245,238,224,.4); margin-top:10px; line-height:1.5;}
@@ -476,20 +479,20 @@ footer a:hover{color:var(--oro-chiaro);}
             <div class="d-stats">
               <div class="k">Vino simbolo</div><div class="v" id="dSignature"></div>
             </div>
-            <div class="d-soste">
-              <div class="k">Le Soste più vicine</div>
-              <ul id="dSosteList"></ul>
-              <div class="d-soste-note">Distanze in linea d'aria, indicative.</div>
-            </div>
             <div class="d-actions">
               <a class="d-btn d-link" id="dLink" href="#" target="_blank" rel="noopener">
                 Scopri la Cantina
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
               </a>
               <a class="d-btn d-maps" id="dMaps" href="#" target="_blank" rel="noopener">
-                Viaggia verso la Sosta
+                Viaggia verso la cantina
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.5-7-11a7 7 0 1 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
               </a>
+            </div>
+            <div class="d-soste">
+              <div class="k">Le Soste più vicine</div>
+              <ul id="dSosteList"></ul>
+              <div class="d-soste-note">Distanze in linea d'aria, indicative.</div>
             </div>
           </div>
         </div>
@@ -754,11 +757,13 @@ function selectWinery(id){
   if(w.nearSoste && w.nearSoste.length){
     document.getElementById('dSosteList').innerHTML = w.nearSoste.map(r => `
       <li>
-        <span>
-          <span class="r-name">${r.name}</span>
-          <span class="r-loc">${r.comune}</span>
-        </span>
-        <span class="r-km">${r.km} km</span>
+        <a class="r-link" href="${'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(r.name + ', ' + r.comune + ', Italia')}" target="_blank" rel="noopener">
+          <span>
+            <span class="r-name">${r.name}</span>
+            <span class="r-loc">${r.comune}</span>
+          </span>
+          <span class="r-km">${r.km} km</span>
+        </a>
       </li>
     `).join('');
     detailCard.classList.add('has-soste');
