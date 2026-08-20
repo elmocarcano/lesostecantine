@@ -294,6 +294,16 @@ nav.links a:hover{opacity:1; color:var(--oro-chiaro);}
 .detail-card.has-signature .d-stats{display:block;}
 .detail-card .d-stats .k{font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:rgba(245,238,224,.48);}
 .detail-card .d-stats .v{font-family:var(--font-display); font-size:15px; font-weight:600; color:var(--oro-chiaro); margin-top:2px;}
+.detail-card .d-soste{display:none; margin-top:16px; padding-top:14px; border-top:1px solid rgba(201,168,105,.2);}
+.detail-card.has-soste .d-soste{display:block;}
+.detail-card .d-soste .k{font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:rgba(245,238,224,.48); margin-bottom:9px;}
+.detail-card .d-soste ul{list-style:none;}
+.detail-card .d-soste li{display:flex; align-items:baseline; justify-content:space-between; gap:10px; padding:7px 0; border-bottom:1px dashed rgba(245,238,224,.14);}
+.detail-card .d-soste li:last-child{border-bottom:none;}
+.detail-card .d-soste .r-name{font-size:12.5px; font-weight:500; color:var(--avorio); display:block;}
+.detail-card .d-soste .r-loc{font-size:10.5px; color:rgba(245,238,224,.5);}
+.detail-card .d-soste .r-km{font-size:10.5px; color:var(--oro-chiaro); white-space:nowrap; flex-shrink:0;}
+.detail-card .d-soste-note{font-size:10px; color:rgba(245,238,224,.4); margin-top:10px; line-height:1.5;}
 .detail-card .d-actions{display:flex; flex-direction:column; gap:8px; margin-top:18px;}
 .detail-card .d-btn{
   display:flex; align-items:center; justify-content:center; gap:7px;
@@ -314,6 +324,24 @@ nav.links a:hover{opacity:1; color:var(--oro-chiaro);}
 .detail-card .close:hover{background:rgba(20,8,12,.8);}
 
 /* -------- AMMISSIONE -------- */
+/* -------- LE SOSTE (associazione) -------- */
+.le-soste{
+  padding:110px 0; text-align:center; position:relative; overflow:hidden;
+  background:
+    radial-gradient(90% 140% at 50% -20%, rgba(201,168,105,.12), transparent 60%),
+    linear-gradient(160deg, var(--vinaccia) 0%, var(--vinaccia-deep) 100%);
+  color:var(--avorio);
+}
+.ls-wrap{max-width:680px; margin:0 auto;}
+.le-soste .eyebrow{color:var(--oro-chiaro); margin-bottom:20px;}
+.le-soste h2{
+  font-family:var(--font-display); font-weight:600; font-style:italic;
+  font-size:clamp(26px,3.4vw,38px); line-height:1.35; margin-bottom:22px;
+}
+.le-soste p{color:rgba(245,238,224,.75); font-size:16px; line-height:1.75; max-width:560px; margin:0 auto 34px;}
+.le-soste .btn-primary{display:inline-flex; align-items:center; gap:9px;}
+.le-soste .btn-primary svg{width:13px; height:13px;}
+
 .ammissione{padding:120px 0; background:var(--pergamena);}
 .amm-wrap{max-width:600px; margin:0 auto;}
 .amm-wrap .eyebrow{color:var(--rosso-sigillo); text-align:center;}
@@ -367,6 +395,7 @@ footer a:hover{color:var(--oro-chiaro);}
     <nav class="links">
       <a href="#chi-siamo">Chi Siamo</a>
       <a href="#mappa">La Mappa</a>
+      <a href="#le-soste">Le Soste</a>
       <a href="#ammissione">Come Aderire</a>
       <a href="#contatti">Contatti</a>
     </nav>
@@ -447,6 +476,11 @@ footer a:hover{color:var(--oro-chiaro);}
             <div class="d-stats">
               <div class="k">Vino simbolo</div><div class="v" id="dSignature"></div>
             </div>
+            <div class="d-soste">
+              <div class="k">Le Soste più vicine</div>
+              <ul id="dSosteList"></ul>
+              <div class="d-soste-note">Distanze in linea d'aria, indicative.</div>
+            </div>
             <div class="d-actions">
               <a class="d-btn d-link" id="dLink" href="#" target="_blank" rel="noopener">
                 Scopri la Cantina
@@ -460,6 +494,20 @@ footer a:hover{color:var(--oro-chiaro);}
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="le-soste" id="le-soste">
+  <div class="container ls-wrap">
+    <div class="reveal">
+      <div class="eyebrow">Un'unica famiglia</div>
+      <h2>Mentre esplori l'enologia italiana, c'è una Sosta che ti aspetta.</h2>
+      <p>Le Soste nelle Cantine è l'evoluzione naturale di Associazione Le Soste, il circolo storico dei grandi ristoranti d'Italia. Le stesse tavole che difendono la cucina d'autore vi accompagnano lungo il viaggio tra una cantina e l'altra: nella scheda di alcune aziende trovate già le Soste più vicine, e potete scoprire l'intera rete su lesoste.it.</p>
+      <a href="https://www.lesoste.it" target="_blank" rel="noopener" class="btn btn-primary">
+        Scopri Le Soste
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -493,13 +541,14 @@ footer a:hover{color:var(--oro-chiaro);}
         <ul>
           <li><a href="#chi-siamo">Chi Siamo</a></li>
           <li><a href="#mappa">La Mappa</a></li>
+          <li><a href="#le-soste">Le Soste</a></li>
           <li><a href="#ammissione">Come Aderire</a></li>
         </ul>
       </div>
       <div>
         <h4>Associazione</h4>
         <ul>
-          <li><a href="#">Le Soste — Ristoranti</a></li>
+          <li><a href="https://www.lesoste.it" target="_blank" rel="noopener">Le Soste — Ristoranti</a></li>
           <li><a href="#">Consiglio Direttivo</a></li>
           <li><a href="#">Ufficio Stampa</a></li>
         </ul>
@@ -548,10 +597,10 @@ const IMG_ORNELLAIA = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA
 
 // ---------------- DATA ----------------
 const wineries = [
-{id:1,name:"Antinori",comune:"San Casciano in Val di Pesa (FI)",regione:"Toscana",macro:"centro",x:156,y:203,desc:"Ventisei generazioni al vertice del vino toscano dal 1385, nel cuore del Chianti Classico.",img:IMG_ANTINORI,signature:"Tignanello",url:"https://www.antinori.it"},
-{id:2,name:"Marchesi Frescobaldi",comune:"Pontassieve (FI)",regione:"Toscana",macro:"centro",x:163,y:192,desc:"Una delle famiglie vitivinicole più antiche d'Italia, tra Chianti Rùfina e Maremma.",img:IMG_FRESCOBALDI,signature:"Nipozzano",url:"https://www.frescobaldi.com"},
-{id:3,name:"Tenuta San Guido",comune:"Bolgheri (LI)",regione:"Toscana",macro:"centro",x:134,y:221,desc:"La tenuta del Sassicaia, pioniera dei grandi rossi bordolesi sulla costa tirrenica.",img:IMG_SANGUIDO,signature:"Sassicaia",url:"https://www.tenutasanguido.com"},
-{id:4,name:"Ornellaia",comune:"Bolgheri (LI)",regione:"Toscana",macro:"centro",x:141,y:227,desc:"Supertuscan di riferimento internazionale, tra le etichette più ricercate al mondo.",img:IMG_ORNELLAIA,signature:"Masseto",url:"https://www.ornellaia.com"},
+{id:1,name:"Antinori",comune:"San Casciano in Val di Pesa (FI)",regione:"Toscana",macro:"centro",x:156,y:203,desc:"Ventisei generazioni al vertice del vino toscano dal 1385, nel cuore del Chianti Classico.",img:IMG_ANTINORI,signature:"Tignanello",url:"https://www.antinori.it",nearSoste:[{name:"Arnolfo",comune:"Colle di Val d'Elsa (SI)",km:28},{name:"Il Falconiere",comune:"Cortona (AR)",km:77},{name:"Romano & Il Piccolo Principe",comune:"Viareggio (LU)",km:78}]},
+{id:2,name:"Marchesi Frescobaldi",comune:"Pontassieve (FI)",regione:"Toscana",macro:"centro",x:163,y:192,desc:"Una delle famiglie vitivinicole più antiche d'Italia, tra Chianti Rùfina e Maremma.",img:IMG_FRESCOBALDI,signature:"Nipozzano",url:"https://www.frescobaldi.com",nearSoste:[{name:"Arnolfo",comune:"Colle di Val d'Elsa (SI)",km:47},{name:"Piastrino",comune:"Pennabilli (RN)",km:67},{name:"San Domenico",comune:"Imola (BO)",km:69}]},
+{id:3,name:"Tenuta San Guido",comune:"Bolgheri (LI)",regione:"Toscana",macro:"centro",x:134,y:221,desc:"La tenuta del Sassicaia, pioniera dei grandi rossi bordolesi sulla costa tirrenica.",img:IMG_SANGUIDO,signature:"Sassicaia",url:"https://www.tenutasanguido.com",nearSoste:[{name:"Arnolfo",comune:"Colle di Val d'Elsa (SI)",km:46},{name:"Romano & Il Piccolo Principe",comune:"Viareggio (LU)",km:77},{name:"Lorenzo",comune:"Forte dei Marmi (LU)",km:89}]},
+{id:4,name:"Ornellaia",comune:"Bolgheri (LI)",regione:"Toscana",macro:"centro",x:141,y:227,desc:"Supertuscan di riferimento internazionale, tra le etichette più ricercate al mondo.",img:IMG_ORNELLAIA,signature:"Masseto",url:"https://www.ornellaia.com",nearSoste:[{name:"Arnolfo",comune:"Colle di Val d'Elsa (SI)",km:46},{name:"Romano & Il Piccolo Principe",comune:"Viareggio (LU)",km:77},{name:"Lorenzo",comune:"Forte dei Marmi (LU)",km:89}]},
 {id:5,name:"Biondi Santi",comune:"Montalcino (SI)",regione:"Toscana",macro:"centro",x:165,y:229,desc:"La casa che ha codificato il Brunello, custode dello stile classico."},
 {id:6,name:"Casanova di Neri",comune:"Montalcino (SI)",regione:"Toscana",macro:"centro",x:171,y:235,desc:"Interpretazione moderna e potente del Brunello di Montalcino."},
 {id:7,name:"Poliziano",comune:"Montepulciano (SI)",regione:"Toscana",macro:"centro",x:174,y:227,desc:"Tra i nomi guida del Vino Nobile di Montepulciano contemporaneo."},
@@ -700,6 +749,21 @@ function selectWinery(id){
     detailCard.classList.add('has-signature');
   } else {
     detailCard.classList.remove('has-signature');
+  }
+
+  if(w.nearSoste && w.nearSoste.length){
+    document.getElementById('dSosteList').innerHTML = w.nearSoste.map(r => `
+      <li>
+        <span>
+          <span class="r-name">${r.name}</span>
+          <span class="r-loc">${r.comune}</span>
+        </span>
+        <span class="r-km">${r.km} km</span>
+      </li>
+    `).join('');
+    detailCard.classList.add('has-soste');
+  } else {
+    detailCard.classList.remove('has-soste');
   }
 
   const link = document.getElementById('dLink');
